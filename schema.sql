@@ -9,4 +9,7 @@ CREATE TABLE animals (
   weight_in_kg FLOAT NOT NULL
 );
 
+ALTER TABLE animals
+ADD species varchar(200);
+
 
