@@ -1,5 +1,5 @@
-# Animal database
-> This repository includes files with plain SQL that can be used to recreate a database for animals
+# Animal Clinic 
+> This repository contains files for generating an animal clinic database with SQL
 
 ## Getting Started
 
