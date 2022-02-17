@@ -101,3 +101,101 @@ UPDATE animals SET weight_in_kg = weight_in_kg * -1;
 ROLLBACK TO savepointdob;
 UPDATE animals SET weight_in_kg = weight_in_kg * -1 WHERE weight_in_kg < 0;
 COMMIT;
+
+-- Insert the following data into the owners table
+INSERT INTO owners (full_name,age) 
+VALUES 
+(
+  'Sam Smith',
+  34
+),
+(
+  'Jennifer Orwell',
+  19
+),
+(
+  'Bob',
+  45
+),
+(
+  'Melody Pond',
+  77
+),
+(
+  'Dean Winchester',
+  14
+),
+(
+  'Jodie Whittaker',
+  38
+);
+
+-- Insert the following data into the species table
+INSERT INTO species (name)
+VALUES (
+  'Pokemon'
+),
+(
+  'Digimon'
+);
+
+-- Modify your inserted animals so it includes the species_id value
+BEGIN;
+UPDATE animals SET species_id = 
+(
+  SELECT id FROM species WHERE name = 'Digimon'
+)
+WHERE name LIKE '%mon';
+COMMIT;
+
+BEGIN;
+UPDATE animals SET species_id = 
+(
+  SELECT id FROM species WHERE name = 'Pokemon'
+)
+WHERE species_id IS NULL;
+COMMIT;
+
+-- Modify your inserted animals to include owner information (owner_id)
+BEGIN;
+UPDATE animals SET owner_id = 
+(
+  SELECT id FROM owners WHERE full_name = 'Sam Smith'
+)
+WHERE name = 'Agumon';
+COMMIT;
+
+BEGIN;
+UPDATE animals SET owner_id = 
+(
+  SELECT id FROM owners WHERE full_name = 'Jennifer Orwell'
+)
+WHERE name = 'Gabumon' OR name = 'Pikachu';
+COMMIT;
+
+BEGIN;
+UPDATE animals SET owner_id = 
+(
+  SELECT id FROM owners WHERE full_name = 'Bob'
+)
+WHERE name = 'Devimon' OR name = 'Plantmon';
+COMMIT;
+
+BEGIN;
+UPDATE animals SET owner_id = 
+(
+  SELECT id FROM owners WHERE full_name = 'Melody Pond'
+)
+WHERE 
+name = 'Charmander'
+OR name = 'Squirtle'
+OR name = 'Blossom';
+COMMIT;
+
+BEGIN;
+UPDATE animals SET owner_id = 
+(
+  SELECT id FROM owners WHERE full_name = 'Dean Winchester'
+)
+WHERE name = 'Angemon' OR name = 'Boarmon';
+COMMIT;
