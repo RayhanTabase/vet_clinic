@@ -1,5 +1,5 @@
 # Animal Clinic 
-> This repository contains files for generating an animal clinic database with SQL
+> This repository contains files for generating an animal clinic database that has a table for animals, species, vets, specialization, visits. Using postgresql
 
 ## Getting Started
 
