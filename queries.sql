@@ -167,6 +167,17 @@ ORDER BY total_visits DESC
 ) AS species
 LIMIT 1;
 
-EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
-EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
-EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+-- EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
+-- EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+-- EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
+
+
+-- stored procedure to return animals with escape attempts greater than 3
+create or replace FUNCTION high()
+  returns TABLE (name varchar , escape_attempts int) 
+AS
+$func$
+  SELECT name, escape_attempts
+  FROM animals where escape_attempts > 3;
+$func$ 
+LANGUAGE sql;
